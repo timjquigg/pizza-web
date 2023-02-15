@@ -30,6 +30,10 @@ const Save = styled.button`
   font-size: 16px;
   padding: 10px;
   border-radius: 5px;
+  border: 1px solid #ebebeb;
+  &:hover {
+    border: 1px solid #a120d1;
+  }
 `;
 
 const Cancel = styled.button`
@@ -40,6 +44,10 @@ const Cancel = styled.button`
   font-size: 16px;
   padding: 10px;
   border-radius: 5px;
+  border: 1px solid #ebebeb;
+  &:hover {
+    border: 1px solid #a120d1;
+  }
 `;
 
 export default function PizzaForm(props) {

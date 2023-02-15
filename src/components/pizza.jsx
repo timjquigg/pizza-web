@@ -30,6 +30,14 @@ const Save = styled.button`
   font-size: 16px;
   padding: 10px;
   border-radius: 5px;
+  border: 1px solid #ebebeb;
+  &:hover {
+    border: 1px solid #a120d1;
+  }
+  &:disabled {
+    background: grey;
+    border: 1px solid #ebebeb;
+  }
 `;
 
 const Delete = styled.button`
@@ -40,6 +48,10 @@ const Delete = styled.button`
   font-size: 16px;
   padding: 10px;
   border-radius: 5px;
+  border: 1px solid #ebebeb;
+  &:hover {
+    border: 1px solid #a120d1 !important;
+  }
 `;
 
 export default function Pizza({ pizza }) {
@@ -65,6 +77,7 @@ export default function Pizza({ pizza }) {
 
   return (
     <PizzaFrame>
+      <h2>Pizza</h2>
       <h3>
         <Title
           onChange={(evt) => update(evt.target.value, "name", data)}
@@ -78,7 +91,9 @@ export default function Pizza({ pizza }) {
         />
       </div>
       <div>
-        {dirty && <Save onClick={onSave}>Save</Save>}
+        <Save onClick={onSave} disabled={!dirty}>
+          Save
+        </Save>
         <Delete onClick={onDelete}>Delete</Delete>
       </div>
     </PizzaFrame>

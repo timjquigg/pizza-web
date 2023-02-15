@@ -12,6 +12,10 @@ const Add = styled.button`
   font-size: 16px;
   padding: 10px;
   border-radius: 5px;
+  border: 1px solid #ebebeb;
+  &:hover {
+    border: 1px solid #a120d1;
+  }
 `;
 
 const Main = () => {
