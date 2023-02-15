@@ -12,13 +12,21 @@ const PizzaFrame = styled.div`
   max-width: 600px;
 `;
 
-const Input = styled.input`
+const Input = styled.textarea`
+  resize: none;
+  width: 200px;
+  height: 50px;
   border: solid 1px black;
   padding: 5px;
   border-radius: 3px;
 `;
 
-const Title = styled(Input)`
+const Title = styled.input`
+  autofocus;
+  width: 200px;
+  border: solid 1px black;
+  padding: 5px;
+  border-radius: 3px;
   text-transform: uppercase;
 `;
 
@@ -71,12 +79,17 @@ export default function PizzaForm(props) {
   return (
     <PizzaFrame>
       <h3>
+        Pizza Name:
+        <br />
         <Title
+          autoFocus
           onChange={(evt) => update(evt.target.value, "name", data)}
           value={data.name}
         />
       </h3>
       <div>
+        Pizza Topppings:
+        <br />
         <Input
           onChange={(evt) => update(evt.target.value, "description", data)}
           value={data.description}

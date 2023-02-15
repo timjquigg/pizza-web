@@ -10,15 +10,23 @@ const PizzaFrame = styled.div`
   box-shadow: 0 0 5px grey;
   font-family: Arial;
   max-width: 600px;
+  vertical-align: middle;
 `;
 
-const Input = styled.input`
+const Input = styled.textarea`
+  resize: none;
+  width: 200px;
+  height: 50px;
   border: solid 1px black;
   padding: 5px;
   border-radius: 3px;
 `;
 
-const Title = styled(Input)`
+const Title = styled.input`
+  width: 200px;
+  border: solid 1px black;
+  padding: 5px;
+  border-radius: 3px;
   text-transform: uppercase;
 `;
 
@@ -77,14 +85,17 @@ export default function Pizza({ pizza }) {
 
   return (
     <PizzaFrame>
-      <h2>Pizza</h2>
       <h3>
+        Pizza Name:
+        <br />
         <Title
           onChange={(evt) => update(evt.target.value, "name", data)}
           value={data.name}
         />
       </h3>
       <div>
+        Pizza Topppings:
+        <br />
         <Input
           onChange={(evt) => update(evt.target.value, "description", data)}
           value={data.description}
