@@ -32,7 +32,7 @@ const Save = styled.button`
   border-radius: 5px;
 `;
 
-const Delete = styled.button`
+const Cancel = styled.button`
   width: 100px;
   margin: 10px;
   background: red;
@@ -42,25 +42,22 @@ const Delete = styled.button`
   border-radius: 5px;
 `;
 
-export default function Pizza({ pizza }) {
-  const [data, setData] = useState(pizza);
-  const [dirty, setDirty] = useState(false);
+export default function PizzaForm(props) {
+  const [data, setData] = useState({ name: "", description: "" });
 
   function update(value, fieldName, obj) {
     setData({ ...obj, [fieldName]: value });
-    setDirty(true);
   }
 
-  const { updatePizza, deletePizza } = useContext(pizzaContext);
+  const { addPizza } = useContext(pizzaContext);
 
   function onSave() {
-    setDirty(false);
-    updatePizza(data);
+    props.show(false);
+    addPizza(data);
   }
 
   function onDelete() {
-    setDirty(false);
-    deletePizza(data.id);
+    props.show(false);
   }
 
   return (
@@ -78,8 +75,8 @@ export default function Pizza({ pizza }) {
         />
       </div>
       <div>
-        {dirty && <Save onClick={onSave}>Save</Save>}
-        <Delete onClick={onDelete}>Delete</Delete>
+        <Save onClick={onSave}>Save</Save>
+        <Cancel onClick={onDelete}>Cancel</Cancel>
       </div>
     </PizzaFrame>
   );

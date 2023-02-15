@@ -35,11 +35,21 @@ export default function PizzaProvider(props) {
     axios.delete(`/pizza/${id}`).then((res) => {
       return;
     });
-    console.log("getting pizzas");
-    getPizzas();
+    setPizzas((prev) => {
+      const newPizzas = [...prev];
+      return newPizzas.filter((pizza) => pizza.id !== id);
+    });
   };
 
-  const addPizza = (pizza) => {};
+  const addPizza = (pizza) => {
+    axios.post(`/pizza`, pizza).then((res) => {
+      setPizzas((prev) => {
+        const newPizzas = [...prev];
+        newPizzas.push(res.data);
+        return newPizzas;
+      });
+    });
+  };
 
   const providerData = {
     pizzas,

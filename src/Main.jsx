@@ -1,13 +1,35 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import styled from "styled-components";
 import Pizza from "./components/pizza";
+import PizzaForm from "./components/pizzaForm";
 import { pizzaContext } from "./providers/pizzaProvider";
 
-const Main = () => {
-  const { pizzas } = useContext(pizzaContext);
+const Add = styled.button`
+  width: 100px;
+  margin: 10px;
+  background: Blue;
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  border-radius: 5px;
+`;
 
+const Main = () => {
+  const [show, setShow] = useState(false);
+  const { pizzas } = useContext(pizzaContext);
   const data = pizzas.map((pizza) => <Pizza key={pizza.id} pizza={pizza} />);
 
-  return <>{pizzas.length === 0 ? <div>No pizzas</div> : <div>{data}</div>}</>;
+  const onAdd = () => {
+    setShow(true);
+  };
+
+  return (
+    <>
+      {pizzas.length === 0 ? <div>No pizzas</div> : <div>{data}</div>}
+      {show && <PizzaForm show={setShow} />}
+      <Add onClick={onAdd}>Add</Add>
+    </>
+  );
 };
 
 export default Main;
